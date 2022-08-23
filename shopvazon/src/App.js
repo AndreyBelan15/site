@@ -3,28 +3,71 @@ import Card from './components/Card';
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 
-const arr = [
-  { title: 'Красивая и стильная коллекция из трех вазонов',
-    price: 55555,
-    imageUrl: '/img/vazons/vazon1.jpg'},
-  { title: 'Красивая и стильная коллекция из двух вазонов',
-    price: 44444,
-    imageUrl: '/img/vazons/vazon2.jpg'},
-  { title: 'Красивая и стильная коллекция из трех вазонов',
-    price: 33333,
-    imageUrl: '/img/vazons/vazon3.jpg'},
-  { title: 'Красивая и стильная коллекция из двух вазонов',
-    price: 77777,
-    imageUrl: '/img/vazons/vazon4.jpg'}
-];
+// const arr = [
+//   // { title: 'Красивая и стильная коллекция из трех вазонов',
+//   //   price: 55555,
+//   //   imageUrl: '/img/vazons/vazon1.jpg'},
+//   // { title: 'Красивая и стильная коллекция из двух вазонов',
+//   //   price: 44444,
+//   //   imageUrl: '/img/vazons/vazon2.jpg'},
+//   // { title: 'Красивая и стильная коллекция из трех вазонов',
+//   //   price: 33333,
+//   //   imageUrl: '/img/vazons/vazon3.jpg'},
+//   // { title: 'Красивая и стильная коллекция из двух вазонов',
+//   //   price: 77777,
+//   //   imageUrl: '/img/vazons/vazon4.jpg'},
+//
+//   // { "title": "Красивая и стильная коллекция из трех вазонов",
+//   //   "price": 55555,
+//   //   "imageUrl": "/img/vazons/1.jpg"},
+//   // { "title": "Красивая и стильная коллекция из двух вазонов",
+//   //   "price": 44444,
+//   //   "imageUrl": "/img/vazons/2.jpg"},
+//   // { "title": "Красивая и стильная коллекция из трех вазонов",
+//   //   "price": 33333,
+//   //   "imageUrl": "/img/vazons/3.jpg"},
+//   // { "title": "Красивая и стильная коллекция из двух вазонов",
+//   //   "price": 77777,
+//   //   "imageUrl": "/img/vazons/4.jpg"},
+//   // { "title": "Красивая и стильная коллекция из трех вазонов",
+//   //   "price": 55555,
+//   //   "imageUrl": "/img/vazons/1.jpg"},
+//   // { "title": "Красивая и стильная коллекция из двух вазонов",
+//   //   "price": 44444,
+//   //   "imageUrl": "/img/vazons/2.jpg"},
+//   // { "title": "Красивая и стильная коллекция из трех вазонов",
+//   //   "price": 33333,
+//   //   "imageUrl": "/img/vazons/3.jpg"},
+//   // { "title": "Красивая и стильная коллекция из двух вазонов",
+//   //   "price": 77777,
+//   //   "imageUrl": "/img/vazons/4.jpg"}
+// ];
 
 function App() {
+  const [items, setItems] = React.useState([])
+  const [cartItems, setCartItems] = React.useState([])
   const [cartOpened, setCartOpened] = React.useState(false)
+
+  React.useEffect(() => {
+    fetch('https://6304e002697408f7edbd253a.mockapi.io/items')
+      .then ((res) => {
+        return res.json()
+      })
+      .then ((json) => {
+        setItems (json)
+      })
+  },[])
+
+  const onAddToCard = (obj) =>{
+    setCartItems(prev =>[...prev, obj])
+  }
+
+
 
   return (
     <div className="wrapper clear">
 
-      {cartOpened && <Drawer onClose={()=>setCartOpened(false)}/>}
+      {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)}/>}
 
       <Header onClickCart={()=>setCartOpened(true)} />
 
@@ -39,14 +82,14 @@ function App() {
 
         {/*===== Див с карточками товара =====*/}
 
-        <div className="d-flex justify-between flex-wrap">    {/*flex-wrap */}
-          {arr.map((obj)=>
+        <div className="d-flex  flex-wrap">    {/*flex-wrap justify-between*/}
+          {items.map((item)=>
             (<Card
-                title={obj.title}
-                price={obj.price}
-                imageUrl={obj.imageUrl}
+                title={item.title}
+                price={item.price}
+                imageUrl={item.imageUrl}
                 onFaforite={()=>console.log('Добавили в закладки')}
-                onPlus={()=>console.log('Нажали плюс')}
+                onPlus={(obj) => onAddToCard(item)}
               />
           ))}
         </div>
