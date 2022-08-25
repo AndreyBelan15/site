@@ -11,6 +11,8 @@ function Card({ onFaforite, title, imageUrl, price, onPlus }) {
    setIsAdded(!isAdded)
   }
 
+
+
   return(
     <div className={cardStyles.card}>
       <div className={cardStyles.favorite} onClick={onFaforite}>
@@ -35,6 +37,7 @@ function Card({ onFaforite, title, imageUrl, price, onPlus }) {
 
   )
 }
+
 
 export default Card;
 

@@ -1,5 +1,6 @@
 function Drawer ({ onClose, items = [] }) {
   return(
+
     <div className="overlay">
       <div className="drawer">
         <h2 className="d-flex justify-between">
@@ -11,10 +12,7 @@ function Drawer ({ onClose, items = [] }) {
         <div className="items">
           {items.map((obj) =>(
             <div className="cartItem d-flex align-center mt-20 mb-20 p-10">
-              {/*<div style={{backgroundImage: 'url({obj.imageUrl})'}}>*/}
-
-              {/*  </div>*/}
-            <img className=" mr-15" width={70} height={70} src={obj.imageUrl} alt="Vazon"/>
+              <img className=" mr-15" width={70} height={70} src={obj.imageUrl} alt="Vazon"/>
             <div className="mr-20">
               <p>{obj.title}</p>
               <b>{obj.price} грн.</b>
