@@ -3,7 +3,7 @@ import Card from './components/Card';
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 // import Comdid from "./components/tetsting/Comdid";
-import Slider from "./components/Slider/fotoslider";
+import FotoSlider from "./components/Slider/FotoSlider";
 
 // const arr = [
 //   // { title: 'Красивая и стильная коллекция из трех вазонов',
@@ -77,7 +77,12 @@ function App() {
       {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)}/>}
 
       <Header onClickCart={()=>setCartOpened(true)} />
-      <Slider/>
+
+      <div className="wrapper__slider">
+        <FotoSlider/>
+      </div>
+
+
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
           <h1>Все вазоны</h1>
