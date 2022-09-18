@@ -2,7 +2,7 @@ function Header (props){
   return(
     <header className="d-flex justify-between align-center p-40">
       <div className=" d-flex align-center">
-        <img  width={50} height={50}  src="/img/logo.jfif"/>
+        <img  width={50} height={50}  src="/img/logo.jfif" alt="Logo"/>
         <div className="ml-15">
           <h3 className="text-uppercase">Vazon from Poland</h3>
           <p>Магазин лучших вазонов</p>

@@ -1,4 +1,4 @@
-function Drawer ({ onClose, items = [] }) {
+function Drawer ({ onClose, onRemove, items = [] }) {
   return(
 
     <div className="overlay">
@@ -17,7 +17,11 @@ function Drawer ({ onClose, items = [] }) {
               <p>{obj.title}</p>
               <b>{obj.price} грн.</b>
             </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
+            <img
+              onClick={()=>onRemove(obj.id)}
+              className="removeBtn"
+              src="/img/btn-remove.svg"
+              alt="Remove"/>
           </div>
           ))
           }

@@ -1,22 +1,27 @@
 import React from "react";
-import unlike from './unlike.svg';
+// import unlike from '../../../public/img/unlike.svg';
+// import like from '../../../public/img/like.svg';
 import cardStyles from './Card.module.scss';
 
 
-function Card({ onFaforite, title, imageUrl, price, onPlus }) {
- const [isAdded, setIsAdded] = React.useState()
+function Card({ title, imageUrl, price, onPlus }) {     // onFaforite-старый пропс
+  const [isAdded, setIsAdded] = React.useState()
+  const [isFavorite, setIsFavorite] = React.useState()
 
   const onClickPlus= () => {
    onPlus({title, imageUrl, price})
    setIsAdded(!isAdded)
   }
 
+  const onClickFavorite = () =>{
+    setIsFavorite(!isFavorite)
+  }
 
 
   return(
     <div className={cardStyles.card}>
-      <div className={cardStyles.favorite} onClick={onFaforite}>
-        <img width={32} height={32} src={unlike} alt="Unlike"/>
+      <div className={cardStyles.favorite} onClick={onClickFavorite}>
+        <img width={32} height={32} src={isFavorite ? '/img/like.svg' : '/img/unlike.svg'} alt="Unlike"/>
       </div>
       <img className="card__img" width={155} height={180} src={imageUrl} alt="Vazon"/>
       <h5 className="mt-10 mb-10">{title}</h5>
