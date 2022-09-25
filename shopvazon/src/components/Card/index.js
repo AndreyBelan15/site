@@ -1,6 +1,6 @@
 import React from "react";
-// import unlike from '../../../public/img/unlike.svg';
-// import like from '../../../public/img/like.svg';
+import unlike from './unlike.svg';
+import like from './like.svg';
 import cardStyles from './Card.module.scss';
 
 
@@ -21,7 +21,7 @@ function Card({ title, imageUrl, price, onPlus }) {     // onFaforite-стары
   return(
     <div className={cardStyles.card}>
       <div className={cardStyles.favorite} onClick={onClickFavorite}>
-        <img width={32} height={32} src={isFavorite ? '/img/like.svg' : '/img/unlike.svg'} alt="Unlike"/>
+        <img width={32} height={32} src={isFavorite ? like : unlike} alt="Unlike"/>
       </div>
       <img className="card__img" width={155} height={180} src={imageUrl} alt="Vazon"/>
       <h5 className="mt-10 mb-10">{title}</h5>
