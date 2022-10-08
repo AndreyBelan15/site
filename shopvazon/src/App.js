@@ -5,45 +5,7 @@ import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 // import FotoSlider from "./components/Slider/FotoSlider";
 
-// const arr = [
-//   // { title: 'Красивая и стильная коллекция из трех вазонов',
-//   //   price: 55555,
-//   //   imageUrl: '/img/vazons/vazon1.jpg'},
-//   // { title: 'Красивая и стильная коллекция из двух вазонов',
-//   //   price: 44444,
-//   //   imageUrl: '/img/vazons/vazon2.jpg'},
-//   // { title: 'Красивая и стильная коллекция из трех вазонов',
-//   //   price: 33333,
-//   //   imageUrl: '/img/vazons/vazon3.jpg'},
-//   // { title: 'Красивая и стильная коллекция из двух вазонов',
-//   //   price: 77777,
-//   //   imageUrl: '/img/vazons/vazon4.jpg'},
-//
-//   // { "title": "Красивая и стильная коллекция из трех вазонов",
-//   //   "price": 55555,
-//   //   "imageUrl": "/img/vazons/1.jpg"},
-//   // { "title": "Красивая и стильная коллекция из двух вазонов",
-//   //   "price": 44444,
-//   //   "imageUrl": "/img/vazons/2.jpg"},
-//   // { "title": "Красивая и стильная коллекция из трех вазонов",
-//   //   "price": 33333,
-//   //   "imageUrl": "/img/vazons/3.jpg"},
-//   // { "title": "Красивая и стильная коллекция из двух вазонов",
-//   //   "price": 77777,
-//   //   "imageUrl": "/img/vazons/4.jpg"},
-//   // { "title": "Красивая и стильная коллекция из трех вазонов",
-//   //   "price": 55555,
-//   //   "imageUrl": "/img/vazons/1.jpg"},
-//   // { "title": "Красивая и стильная коллекция из двух вазонов",
-//   //   "price": 44444,
-//   //   "imageUrl": "/img/vazons/2.jpg"},
-//   // { "title": "Красивая и стильная коллекция из трех вазонов",
-//   //   "price": 33333,
-//   //   "imageUrl": "/img/vazons/3.jpg"},
-//   // { "title": "Красивая и стильная коллекция из двух вазонов",
-//   //   "price": 77777,
-//   //   "imageUrl": "/img/vazons/4.jpg"}
-// ];
+
 
 function App() {
   const [items, setItems] = React.useState([])
@@ -61,10 +23,12 @@ function App() {
     //   .then ((json) => {
     //     setItems (json)
     //   })
-    axios.get('https://6304e002697408f7edbd253a.mockapi.io/items').then((res) => {
+    axios.get('https://6304e002697408f7edbd253a.mockapi.io/items')
+      .then((res) => {
       setItems(res.data)
     })
-    axios.get('https://6304e002697408f7edbd253a.mockapi.io/cart').then((res) => {
+    axios.get('https://6304e002697408f7edbd253a.mockapi.io/cart')
+      .then((res) => {
       setCartItems(res.data)
     })
   },[])
@@ -142,6 +106,53 @@ function App() {
 export default App;
 
 
+
+
+
+
+
+
+
+
+// const arr = [
+//   // { title: 'Красивая и стильная коллекция из трех вазонов',
+//   //   price: 55555,
+//   //   imageUrl: '/img/vazons/vazon1.jpg'},
+//   // { title: 'Красивая и стильная коллекция из двух вазонов',
+//   //   price: 44444,
+//   //   imageUrl: '/img/vazons/vazon2.jpg'},
+//   // { title: 'Красивая и стильная коллекция из трех вазонов',
+//   //   price: 33333,
+//   //   imageUrl: '/img/vazons/vazon3.jpg'},
+//   // { title: 'Красивая и стильная коллекция из двух вазонов',
+//   //   price: 77777,
+//   //   imageUrl: '/img/vazons/vazon4.jpg'},
+//
+//   // { "title": "Красивая и стильная коллекция из трех вазонов",
+//   //   "price": 55555,
+//   //   "imageUrl": "/img/vazons/1.jpg"},
+//   // { "title": "Красивая и стильная коллекция из двух вазонов",
+//   //   "price": 44444,
+//   //   "imageUrl": "/img/vazons/2.jpg"},
+//   // { "title": "Красивая и стильная коллекция из трех вазонов",
+//   //   "price": 33333,
+//   //   "imageUrl": "/img/vazons/3.jpg"},
+//   // { "title": "Красивая и стильная коллекция из двух вазонов",
+//   //   "price": 77777,
+//   //   "imageUrl": "/img/vazons/4.jpg"},
+//   // { "title": "Красивая и стильная коллекция из трех вазонов",
+//   //   "price": 55555,
+//   //   "imageUrl": "/img/vazons/1.jpg"},
+//   // { "title": "Красивая и стильная коллекция из двух вазонов",
+//   //   "price": 44444,
+//   //   "imageUrl": "/img/vazons/2.jpg"},
+//   // { "title": "Красивая и стильная коллекция из трех вазонов",
+//   //   "price": 33333,
+//   //   "imageUrl": "/img/vazons/3.jpg"},
+//   // { "title": "Красивая и стильная коллекция из двух вазонов",
+//   //   "price": 77777,
+//   //   "imageUrl": "/img/vazons/4.jpg"}
+// ];
 
 
 
