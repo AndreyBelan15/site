@@ -1,9 +1,10 @@
 import React from "react"
+import { Route } from 'react-router-dom';
 import axios from "axios";
-import Card from './components/Card';
+import Home from './components/pages/Home';
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
-// import FotoSlider from "./components/Slider/FotoSlider";
+import FotoSlider from "./components/Slider/FotoSlider";
 
 
 
@@ -16,13 +17,7 @@ function App() {
     //Получение карточек товара из базы данных
 
   React.useEffect(() => {
-    // fetch('https://6304e002697408f7edbd253a.mockapi.io/items')
-    //   .then ((res) => {
-    //     return res.json()
-    //   })
-    //   .then ((json) => {
-    //     setItems (json)
-    //   })
+
     axios.get('https://6304e002697408f7edbd253a.mockapi.io/items')
       .then((res) => {
       setItems(res.data)
@@ -59,46 +54,25 @@ function App() {
 
       <Header onClickCart={()=>setCartOpened(true)} />
 
-      {/*<div className="wrapper__slider">*/}
-      {/*  <FotoSlider/>*/}
-      {/*</div>*/}
+      <Route path=" ">
+        <Home
+          items={items}
+          cartItems={cartItems}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          onChangeSearchInput={onChangeSearchInput}
+          onAddToFavorite={onAddToFavorite}
+          onAddToCart={onAddToCart}
+          // isLoading={isLoading}
+        />
+      </Route>
 
-
-      <div className="content p-40">
-        <div className="d-flex align-center justify-between mb-40">
-          <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все вазоны'}</h1>
-          <div className="search-block d-flex">
-            <img src="/img/search.svg" alt="Search"/>
-            {searchValue &&
-              <img
-                onClick={()=>setSearchValue('')}
-                className="clear removeBtn"
-                src="/img/btn-remove.svg"
-                alt="Clear"/>}
-
-            <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск ..."/>
-          </div>
-        </div>
-
-        {/*===== Див с карточками товара =====*/}
-
-        <div className="d-flex justify-between flex-wrap">    {/*flex-wrap */}
-          {items
-            .filter((item)=>item.title.toLowerCase().includes(searchValue))
-            .map((item, index)=>
-            (<Card
-                key={index}
-                title={item.title}
-                price={item.price}
-                imageUrl={item.imageUrl}
-                onFaforite={()=>console.log('Добавили в закладки')}
-                onPlus={(obj) => onAddToCard(item)}
-              />
-          ))}
-        </div>
-
-
+      <div className="wrapper__slider">
+        <FotoSlider/>
       </div>
+
+
+
     </div>
   );
 }
@@ -114,45 +88,6 @@ export default App;
 
 
 
-// const arr = [
-//   // { title: 'Красивая и стильная коллекция из трех вазонов',
-//   //   price: 55555,
-//   //   imageUrl: '/img/vazons/vazon1.jpg'},
-//   // { title: 'Красивая и стильная коллекция из двух вазонов',
-//   //   price: 44444,
-//   //   imageUrl: '/img/vazons/vazon2.jpg'},
-//   // { title: 'Красивая и стильная коллекция из трех вазонов',
-//   //   price: 33333,
-//   //   imageUrl: '/img/vazons/vazon3.jpg'},
-//   // { title: 'Красивая и стильная коллекция из двух вазонов',
-//   //   price: 77777,
-//   //   imageUrl: '/img/vazons/vazon4.jpg'},
-//
-//   // { "title": "Красивая и стильная коллекция из трех вазонов",
-//   //   "price": 55555,
-//   //   "imageUrl": "/img/vazons/1.jpg"},
-//   // { "title": "Красивая и стильная коллекция из двух вазонов",
-//   //   "price": 44444,
-//   //   "imageUrl": "/img/vazons/2.jpg"},
-//   // { "title": "Красивая и стильная коллекция из трех вазонов",
-//   //   "price": 33333,
-//   //   "imageUrl": "/img/vazons/3.jpg"},
-//   // { "title": "Красивая и стильная коллекция из двух вазонов",
-//   //   "price": 77777,
-//   //   "imageUrl": "/img/vazons/4.jpg"},
-//   // { "title": "Красивая и стильная коллекция из трех вазонов",
-//   //   "price": 55555,
-//   //   "imageUrl": "/img/vazons/1.jpg"},
-//   // { "title": "Красивая и стильная коллекция из двух вазонов",
-//   //   "price": 44444,
-//   //   "imageUrl": "/img/vazons/2.jpg"},
-//   // { "title": "Красивая и стильная коллекция из трех вазонов",
-//   //   "price": 33333,
-//   //   "imageUrl": "/img/vazons/3.jpg"},
-//   // { "title": "Красивая и стильная коллекция из двух вазонов",
-//   //   "price": 77777,
-//   //   "imageUrl": "/img/vazons/4.jpg"}
-// ];
 
 
 

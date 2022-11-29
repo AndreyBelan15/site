@@ -23,17 +23,7 @@ function Drawer ({ onClose, onRemove, items = [] }) {
               src="/img/btn-remove.svg"
               alt="Remove"/>
           </div>
-          ))
-          }
-
-          {/*<div className="cartItem d-flex align-center mt-20 p-10">*/}
-          {/*  <img className=" mr-15" width={70} height={70} src="/img/vazons/vazon1.jpg" alt="Vazon"/>*/}
-          {/*  <div className="mr-20">*/}
-          {/*    <p>Красивая и стильная коллекция из трех вазонов</p>*/}
-          {/*    <b>55 555 грн.</b>*/}
-          {/*  </div>*/}
-          {/*  <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>*/}
-          {/*</div>*/}
+          ))}
         </div>
 
         {/*===== Див с суммой в корзине =====*/}
