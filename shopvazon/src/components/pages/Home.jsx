@@ -6,9 +6,9 @@ function Home({
   searchValue,
   setSearchValue,
   onChangeSearchInput,
-  onAddToFavorite,
+  // onAddToFavorite,
   onAddToCart,
-  // isLoading,
+
 }){
   return(
     <div className="content p-40">
@@ -39,7 +39,7 @@ function Home({
                 price={item.price}
                 imageUrl={item.imageUrl}
                 onFaforite={()=>console.log('Добавили в закладки')}
-                onPlus={(obj) => onAddToCard(item)}
+                onPlus={(obj) => onAddToCart(item)}
               />
             ))}
       </div>
