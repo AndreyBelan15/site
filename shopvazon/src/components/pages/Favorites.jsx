@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../Card";
 
 
-function Favorites({items}){
+function Favorites({items, onAddToFavorite}){
   return(
     <div className="content p-40">
       <div className="d-flex align-center justify-between mb-40">
@@ -13,13 +13,24 @@ function Favorites({items}){
         <div className="d-flex justify-between flex-wrap">
           {items
             .map((item, index)=>
+              // (<Card
+              //     key={index}
+              //     id={item.id}
+              //     title={item.title}
+              //     price={item.price}
+              //     imageUrl={item.imageUrl}
+              //     favorited={true}
+              //     onFaforite={onAddToFavorite}
+              //   />
+              // )
               (<Card
                   key={index}
-                  title={item.title}
-                  price={item.price}
-                  imageUrl={item.imageUrl}
+                  favorited={true}
+                  onFaforite={onAddToFavorite}
+                  {...item}
                 />
-              ))}
+              )
+            )}
         </div>
       </div>
 
