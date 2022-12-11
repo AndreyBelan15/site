@@ -1,17 +1,19 @@
 import React from "react"
 import { Route } from 'react-router-dom';
 import axios from "axios";
-// import Card from './components/Card';                      это тут не надо пока,что
+ // import Card from './components/Card';
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
-import FotoSlider from "./components/Slider/FotoSlider";
+// import FotoSlider from "./components/Slider/FotoSlider";
 import Home from "./components/pages/Home";
+import Favorites from "./components/pages/Favorites";
 
 
 
 function App() {
   const [items, setItems] = React.useState([])
   const [cartItems, setCartItems] = React.useState([])
+  const [favorites, setFavorites] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('')
   const [cartOpened, setCartOpened] = React.useState(false)
 
@@ -31,7 +33,7 @@ function App() {
 
 
 
-  const onAddToCard = (obj) =>{
+  const onAddToCart = (obj) =>{
     axios.post('https://6304e002697408f7edbd253a.mockapi.io/cart', obj)
     setCartItems(prev => [...prev, obj])
   }
@@ -41,6 +43,10 @@ function App() {
     setCartItems((prev) => prev.filter(item => item.id !== id))
   }
 
+  const onAddToFavorite = (obj) => {
+    axios.post('https://6304e002697408f7edbd253a.mockapi.io/favorites', obj)
+    setFavorites((prev) => [...prev, obj])
+  }
 
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value)
@@ -57,27 +63,65 @@ function App() {
 
 
          {/*Слайдер*/}
-      <div className="wrapper__slider">
-        <FotoSlider/>
-      </div>
+      {/*<div className="wrapper__slider">*/}
+      {/*  <FotoSlider/>*/}
+      {/*</div>*/}
+
+      {/*<div className="content p-40">*/}
+      {/*  <div className="d-flex align-center justify-between mb-40">*/}
+      {/*    <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все вазоны'}</h1>*/}
+      {/*    <div className="search-block d-flex">*/}
+      {/*      <img src="/img/search.svg" alt="Search"/>*/}
+      {/*      {searchValue &&*/}
+      {/*        <img*/}
+      {/*          onClick={()=>setSearchValue('')}*/}
+      {/*          className="clear removeBtn"*/}
+      {/*          src="/img/btn-remove.svg"*/}
+      {/*          alt="Clear"/>}*/}
+
+      {/*      <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск ..."/>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+
+        {/*===== Див с карточками товара =====*/}
+
+        {/*<div className="d-flex justify-between flex-wrap">    /!*flex-wrap *!/*/}
+        {/*  {items*/}
+        {/*    .filter((item)=>item.title.toLowerCase().includes(searchValue))*/}
+        {/*    .map((item, index)=>*/}
+        {/*    (<Card*/}
+        {/*        key={index}*/}
+        {/*        title={item.title}*/}
+        {/*        price={item.price}*/}
+        {/*        imageUrl={item.imageUrl}*/}
+        {/*        onFaforite={()=>console.log('Добавили в закладки')}*/}
+        {/*        onPlus={(obj) => onAddToCart(item)}*/}
+        {/*      />*/}
+        {/*  ))}*/}
+        {/*</div>*/}
+      {/*</div>*/}
+
 
           {/*Роуты*/}
-      <Route path="/" >
+
+      <Route path="/" exact>
         <Home
           items={items}
           cartItems={cartItems}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           onChangeSearchInput={onChangeSearchInput}
-          // onAddToFavorite={onAddToFavorite}
-          // onAddToCart={onAddToCart}
+          onAddToFavorite={onAddToFavorite}
+          onAddToCart={onAddToCart}
 
         />
       </Route>
 
+      <Route path="/favorites" exact>
+        <Favorites items={favorites}/>
+      </Route>
 
-
-    </div>
+     </div>
   );
 }
 
@@ -120,41 +164,6 @@ export default App;
 
 
 
-{/*<div className="content p-40">*/}
-{/*  <div className="d-flex align-center justify-between mb-40">*/}
-{/*    <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все вазоны'}</h1>*/}
-{/*    <div className="search-block d-flex">*/}
-{/*      <img src="/img/search.svg" alt="Search"/>*/}
-{/*      {searchValue &&*/}
-{/*        <img*/}
-{/*          onClick={()=>setSearchValue('')}*/}
-{/*          className="clear removeBtn"*/}
-{/*          src="/img/btn-remove.svg"*/}
-{/*          alt="Clear"/>}*/}
-
-{/*      <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск ..."/>*/}
-{/*    </div>*/}
-{/*  </div>*/}
-
-{/*  /!*===== Див с карточками товара =====*!/*/}
-
-{/*  <div className="d-flex justify-between flex-wrap">    /!*flex-wrap *!/*/}
-{/*    {items*/}
-{/*      .filter((item)=>item.title.toLowerCase().includes(searchValue))*/}
-{/*      .map((item, index)=>*/}
-{/*      (<Card*/}
-{/*          key={index}*/}
-{/*          title={item.title}*/}
-{/*          price={item.price}*/}
-{/*          imageUrl={item.imageUrl}*/}
-{/*          onFaforite={()=>console.log('Добавили в закладки')}*/}
-{/*          onPlus={(obj) => onAddToCart(item)}*/}
-{/*        />*/}
-{/*    ))}*/}
-{/*  </div>*/}
-
-
-{/*</div>*/}
 
 
 

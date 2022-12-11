@@ -6,7 +6,7 @@ function Home({
   searchValue,
   setSearchValue,
   onChangeSearchInput,
-  // onAddToFavorite,
+  onAddToFavorite,
   onAddToCart,
 
 }){
@@ -38,8 +38,8 @@ function Home({
                 title={item.title}
                 price={item.price}
                 imageUrl={item.imageUrl}
-                onFaforite={()=>console.log('Добавили в закладки')}
-                onPlus={(obj) => onAddToCart(item)}
+                onFaforite={(obj)=>onAddToFavorite(obj)}
+                onPlus={(obj) => onAddToCart(obj)}
               />
             ))}
       </div>

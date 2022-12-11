@@ -5,16 +5,17 @@ import like from './like.svg';
 import cardStyles from './Card.module.scss';
 
 
-function Card({ title, imageUrl, price, onPlus }) {     // onFaforite-старый пропс
+function Card({ title, imageUrl, price, onPlus, onFaforite  }) {
   const [isAdded, setIsAdded] = React.useState()
   const [isFavorite, setIsFavorite] = React.useState()
 
   const onClickPlus= () => {
-   onPlus({title, imageUrl, price})
-   setIsAdded(!isAdded)
+   onPlus({title, imageUrl, price});
+   setIsAdded(!isAdded);
   }
 
   const onClickFavorite = () =>{
+    onFaforite({title, imageUrl, price});
     setIsFavorite(!isFavorite)
   }
 
