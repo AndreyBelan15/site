@@ -3,13 +3,41 @@ import Card from '../Card';
 
 function Home({
   items,
+  cartItems,
   searchValue,
   setSearchValue,
   onChangeSearchInput,
   onAddToFavorite,
   onAddToCart,
-
+  isLoading
 }){
+
+  const renderItems = () => {
+  const filteredItems = items.filter((item)=>item.title.toLowerCase().includes(searchValue.toLowerCase()))
+    return (isLoading ?[...Array(4)] : filteredItems).map((item, index)=>
+        (
+          // <Card
+          //   key={index}
+          //   title={item.title}
+          //   price={item.price}                           //старая версия
+          //   imageUrl={item.imageUrl}
+          //   onFaforite={(obj)=>onAddToFavorite(obj)}
+          //   onPlus={(obj) => onAddToCart(obj)}
+          // />
+          <Card
+            key={index}
+            onFaforite={(obj)=>onAddToFavorite(obj)}                //Лайф-хаковая версия
+            onPlus={(obj) => onAddToCart(obj)}
+            added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
+            loading={isLoading}
+            {...item}
+          />
+
+        ))
+  }
+
+
+
   return(
     <div className="content p-40">
       <div className="d-flex align-center justify-between mb-40">
@@ -30,26 +58,7 @@ function Home({
       {/*===== Див с карточками товара =====*/}
 
       <div className="d-flex justify-between flex-wrap">    {/*flex-wrap */}
-        {items
-          .filter((item)=>item.title.toLowerCase().includes(searchValue))
-          .map((item, index)=>
-            (
-              // <Card
-              //   key={index}
-              //   title={item.title}
-              //   price={item.price}
-              //   imageUrl={item.imageUrl}
-              //   onFaforite={(obj)=>onAddToFavorite(obj)}
-              //   onPlus={(obj) => onAddToCart(obj)}
-              // />
-          <Card
-          key={index}
-          onFaforite={(obj)=>onAddToFavorite(obj)}
-          onPlus={(obj) => onAddToCart(obj)}
-          {...item}
-          />
-
-            ))}
+        {renderItems()}
       </div>
     </div>
   )

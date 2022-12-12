@@ -41,157 +41,211 @@ header{
   }
 }
 
+.cartEmpty {
+  text-align: center;
 
-.search-block{
-  border: 1px solid #f3f3f3;
-  border-radius: 10px;
-  padding: 0 15px;
-  position: relative;
-
-  .clear{
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    top: 14px;
-    right: 15px;
+  p {
+    width: 280px;
+    line-height: 24px;
   }
-
-  input{
+    .greenButton {
+    width: 100%;
+    height: 55px;
+    background-color: #9dd558;
+    border-radius: 18px;
     border: 0;
-    padding: 13px;
+    color: #fff;
     font-size: 16px;
-    width: 200px;
-  }
-}
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 
-.overlay{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-
-.drawer{
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 420px;
-  height: 100%;
-  right: 0;
-  background-color: #ffffff;
-  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-
-  .items{
-    flex: 1;
-    overflow: auto;
-    margin: 35px 0;
-  }
-}
-
-  .cartTotalBlock {
-    ul {
-      margin-bottom: 40px !important;
-
-      li {
-        display: flex;
-        align-items: flex-end;
-        margin-bottom: 20px;
-
-      div {
-        flex: 1;
-        height: 1px;
-        border-bottom: 1px dashed #dfdfdf;
-        position: relative;
-        top: -3px;
-        margin: 0 8px;
-      }
-    }
-  }
-
-    .greenButton{
-      position: relative;
-
-      &:hover{
-        img{
-          transform: translateX(5px);
-        }
-      }
-
-      img{
-        position: absolute;
-        right: 30px;
-        top: 20px;
-        transition: transform 0.15s ease-in-out;
-      }
-    }
-
-  .greenButton{
-      width: 100%;
-      height: 55px;
-      background-color: #9dd558;
-      border-radius: 18px;
-      border: 0;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
-
-      &:hover {
-        background-color: lighten(#9dd558, 8%);
+    &:hover {
+      background-color: lighten(#9dd558, 8%);
 
       &:active {
         background-color: darken(#9dd558, 8%);
+      }}
+
+      //=======================================
+
+     // Надо будет это удалить позже при пересмотре кода!!!!!!!!!!!!!!!!!!!!!!!
+
+    //.greenButton {
+    //    //width: 245px;
+    //    //margin-top: 20px;
+    //
+    //    &:hover {
+    //      img {
+    //        transform: rotate(180deg) translateX(3px);
+    //      }
+    //    }
+    //
+    //    img {
+    //      position: relative;
+    //      top: 1px;
+    //      transform: rotate(180deg);
+    //      margin-right: 15px;
+    //      transition: transform 0.15s ease-in-out;
+    //
+    //    }
+    //  }
+    }}
+
+     //======================================
+
+    .search-block {
+      border: 1px solid #f3f3f3;
+      border-radius: 10px;
+      padding: 0 15px;
+      position: relative;
+
+      .clear {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        top: 14px;
+        right: 15px;
+      }
+
+      input {
+        border: 0;
+        padding: 13px;
+        font-size: 16px;
+        width: 200px;
       }
     }
-  }
 
-  .cartItem {
-    border: 1px solid #f3f3f3;
-    border-radius: 20px;
-
-
-    p {
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-
-    b {
-
-      font-size: 14px;
-    }
-  }
-}
-
-  .removeBtn {
-    opacity: 0.5;
-    transition: opacity 0.15s ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  .wrapper__slider{
-    width: 100%;
-
-    .wrapper__slider-items{
+    .overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
-      height: 500px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
 
-      img{
+
+    .drawer {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      width: 420px;
+      height: 100%;
+      right: 0;
+      background-color: #ffffff;
+      box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+
+      .items {
+        flex: 1;
+        overflow: auto;
+        margin: 35px 0;
+      }
+    }
+
+    .cartTotalBlock {
+      ul {
+        margin-bottom: 40px !important;
+
+        li {
+          display: flex;
+          align-items: flex-end;
+          margin-bottom: 20px;
+
+          div {
+            flex: 1;
+            height: 1px;
+            border-bottom: 1px dashed #dfdfdf;
+            position: relative;
+            top: -3px;
+            margin: 0 8px;
+          }
+        }
+      }
+
+      .greenButton {
+        position: relative;
+
+        &:hover {
+          img {
+            transform: translateX(5px);
+          }
+        }
+
+        img {
+          position: absolute;
+          right: 30px;
+          top: 20px;
+          transition: transform 0.15s ease-in-out;
+        }
+      }
+
+      .greenButton {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: 55px;
+        background-color: #9dd558;
+        border-radius: 18px;
+        border: 0;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+          background-color: lighten(#9dd558, 8%);
+
+          &:active {
+            background-color: darken(#9dd558, 8%);
+          }
+        }
+      }
+
+      .cartItem {
+        border: 1px solid #f3f3f3;
+        border-radius: 20px;
+
+
+        p {
+          font-size: 15px;
+          margin-bottom: 10px;
+        }
+
+        b {
+
+          font-size: 14px;
+        }
+      }
     }
+
+    .removeBtn {
+      opacity: 0.5;
+      transition: opacity 0.15s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
     }
-  }
+
+    .wrapper__slider {
+      width: 100%;
+
+      .wrapper__slider-items {
+        width: 100%;
+        height: 500px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+
 
 //#particles-js{
 //  width: 100%;
