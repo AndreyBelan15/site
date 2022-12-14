@@ -21,31 +21,13 @@ function App() {
     //Получение карточек товара из базы данных
 
   React.useEffect(() => {
-//    async function fetchData(){
-//        axios.get('https://6304e002697408f7edbd253a.mockapi.io/items')
-//             .then((res) => {
-//              setItems(res.data)
-//     })
-//        axios.get('https://6304e002697408f7edbd253a.mockapi.io/cart')
-//             .then((res) => {
-//              setCartItems(res.data)
-//     })
-//        axios.get('https://6304e002697408f7edbd253a.mockapi.io/favorites')
-//             .then((res) => {
-//              setFavorites(res.data)
-//        })
-// }
-
     async function fetchData(){
-
+      //TODO: Сделать try catch + Promise.all
       setIsLoading(true)
-
       const cartResponse = await axios.get('https://6304e002697408f7edbd253a.mockapi.io/cart')
       const favoritesResponse = await axios.get('https://6304e002697408f7edbd253a.mockapi.io/favorites')
       const itemsResponse = await axios.get('https://6304e002697408f7edbd253a.mockapi.io/items')
-
       setIsLoading(false)
-
       setCartItems(cartResponse.data)
       setFavorites(favoritesResponse.data)
       setItems(itemsResponse.data)
@@ -54,14 +36,19 @@ function App() {
   },[])
 
 
-
+  //Тут я обернул в try-catch для тог, чтоб я мог отловить ошибку
   const onAddToCart = (obj) => {
-    if (cartItems.find((item) => Number(item.id) === Number(obj.id))){
-      axios.delete(`https://6304e002697408f7edbd253a.mockapi.io/cart/${obj.id}`)
-      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
-    }else{
-      axios.post('https://6304e002697408f7edbd253a.mockapi.io/cart', obj)
-      setCartItems(prev => [...prev, obj])
+    try {
+      if (cartItems.find((item) => Number(item.id) === Number(obj.id))){
+        axios.delete(`https://6304e002697408f7edbd253a.mockapi.io/cart/${obj.id}`)
+        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
+      }else{
+        axios.post('https://6304e002697408f7edbd253a.mockapi.io/cart', obj)
+        setCartItems(prev => [...prev, obj])
+      }
+    }
+    catch(error){
+      alert('Не удалось добавить в корзину')
     }
   }
 
@@ -71,12 +58,12 @@ function App() {
   }
 
   const onAddToFavorite = async (obj) => {
-
     //Тут я обернул в try-catch для тог, чтоб я мог отловить ошибку при использовании async-await
     try
     {
-      if (favorites.find((favObj) => favObj.id === obj.id)) {
+      if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
         axios.delete(`https://6304e002697408f7edbd253a.mockapi.io/favorites/${obj.id}`)
+        setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
       } else {
         const {data} = await axios.post('https://6304e002697408f7edbd253a.mockapi.io/favorites', obj)
         setFavorites((prev) => [...prev, data])
@@ -91,9 +78,20 @@ function App() {
     setSearchValue(event.target.value)
   }
 
+  const isItemAdded = (id) => {
+    return cartItems.some((obj) => Number(obj.id) === Number(id))
+  };
+
 
   return (
-    <AppContext.Provider value={{ items, cartItems, favorites }}>
+    <AppContext.Provider value={{
+      items,
+      cartItems,
+      favorites,
+      isItemAdded,
+      onAddToFavorite,
+      setCartOpened,
+      setCartItems }}>
 
       <div className="wrapper clear">
 
@@ -124,7 +122,7 @@ function App() {
         </Route>
 
         <Route path="/favorites" exact>
-          <Favorites  onAddToFavorite={onAddToFavorite}/>
+          <Favorites/>
         </Route>
 
       </div>

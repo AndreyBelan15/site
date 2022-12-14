@@ -1,9 +1,9 @@
 import React from "react";
 import Card from '../Card';
 
+
 function Home({
   items,
-  cartItems,
   searchValue,
   setSearchValue,
   onChangeSearchInput,
@@ -13,26 +13,18 @@ function Home({
 }){
 
   const renderItems = () => {
-  const filteredItems = items.filter((item)=>item.title.toLowerCase().includes(searchValue.toLowerCase()))
+    const filteredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    )
     return (isLoading ?[...Array(4)] : filteredItems).map((item, index)=>
         (
-          // <Card
-          //   key={index}
-          //   title={item.title}
-          //   price={item.price}                           //старая версия
-          //   imageUrl={item.imageUrl}
-          //   onFaforite={(obj)=>onAddToFavorite(obj)}
-          //   onPlus={(obj) => onAddToCart(obj)}
-          // />
           <Card
             key={index}
-            onFaforite={(obj)=>onAddToFavorite(obj)}                //Лайф-хаковая версия
+            onFaforite={(obj)=>onAddToFavorite(obj)}
             onPlus={(obj) => onAddToCart(obj)}
-            added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
             loading={isLoading}
             {...item}
           />
-
         ))
   }
 
