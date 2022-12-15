@@ -1,12 +1,15 @@
 import React from "react"
-import { Route } from 'react-router-dom';
 import axios from "axios";
+import { Route } from 'react-router-dom';
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
-// import FotoSlider from "./components/Slider/FotoSlider";
+import AppContext from "./context";
+
+import FotoSlider from "./components/Slider/FotoSlider";
+
 import Home from "./components/pages/Home";
 import Favorites from "./components/pages/Favorites";
-import AppContext from "./context";
+import Orders from "./components/pages/Orders";
 
 
 
@@ -22,7 +25,9 @@ function App() {
 
   React.useEffect(() => {
     async function fetchData(){
+
       //TODO: Сделать try catch + Promise.all
+
       setIsLoading(true)
       const cartResponse = await axios.get('https://6304e002697408f7edbd253a.mockapi.io/cart')
       const favoritesResponse = await axios.get('https://6304e002697408f7edbd253a.mockapi.io/favorites')
@@ -90,6 +95,7 @@ function App() {
       favorites,
       isItemAdded,
       onAddToFavorite,
+      onAddToCart,
       setCartOpened,
       setCartItems }}>
 
@@ -102,9 +108,10 @@ function App() {
         <Header onClickCart={()=>setCartOpened(true)} />
 
         {/*   /!*Слайдер*!/*/}
-        {/*<div className="wrapper__slider">*/}
-        {/*  <FotoSlider/>*/}
-        {/*</div>*/}
+
+        <div className="wrapper__slider">
+          <FotoSlider/>
+        </div>
 
         {/*Роуты*/}
 
@@ -123,6 +130,10 @@ function App() {
 
         <Route path="/favorites" exact>
           <Favorites/>
+        </Route>
+
+        <Route path="/orders" exact>
+          <Orders/>
         </Route>
 
       </div>

@@ -1,16 +1,19 @@
 import React from "react";
 import axios from "axios";
+
 import Info from "./Info";
-import AppContext from "../context";
+import {useCart} from "../hooks/useCart";
 
 
 // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer ({ onClose, onRemove, items = [] }) {
-  const { cartItems,setCartItems } = React.useContext(AppContext);
+  const {cartItems, setCartItems, totalPrice} = useCart();     // Drawer суммирует все цены товаров (totalPrice)
   const [orderId, setOrderId] = React.useState(null)
   const [isOrderComplete, setIsOrderComplete] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
+
+
 
   const onClickOrder = async () => {
    try {
@@ -19,12 +22,6 @@ function Drawer ({ onClose, onRemove, items = [] }) {
      setOrderId(data.id)
      setIsOrderComplete(true)
      setCartItems([])
-
-      // for (let i = 0; i < cartItems.length; i++) {
-      //   const item = cartItems[i];
-      //   await axios.delete('/https://6304e002697408f7edbd253a.mockapi.io/cart/' + item.id);
-      //   await delay(1000);
-      //  }
    }
    catch (error){
      alert('Не удалось создать заказ, попробуйте еще раз')
@@ -69,12 +66,12 @@ function Drawer ({ onClose, onRemove, items = [] }) {
                   <li>
                     <span>Итого:</span>
                     <div></div>
-                    <b>55 555грн.</b>
+                    <b>{totalPrice}грн.</b>
                   </li>
                   <li>
-                    <span>Скидка 5%:</span>
+                    <span>Скидка 5%:</span>                         {/*Определяю общую сумму скидки на товар*/}
                     <div></div>
-                    <b>555 грн.</b>
+                    <b>{totalPrice / 100 * 5} грн.</b>              {/*Вычисляю сумму скидки8*/}
                   </li>
                 </ul>
                 <button disabled={isLoading} onClick={onClickOrder} className="greenButton">Оформить заказ
@@ -98,14 +95,4 @@ function Drawer ({ onClose, onRemove, items = [] }) {
 }
 
 export default Drawer;
-
-//  <div className="cartEmpty d-flex align-center justify-center flex-column flex">
-//   <img className="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="Корзина"/>
-//      <h2>Корзина пустая</h2>
-//        <p className="opacity-6">Добавьте хотя бы один товар, чтобы сделать заказ.</p>
-//      <button className="greenButton">
-//    {/*<img src="/img/arrow.svg" alt="Arrow"/>*/}
-//    Вернуться назад
-//      </button>
-// </div>
 

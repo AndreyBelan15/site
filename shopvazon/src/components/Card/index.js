@@ -2,9 +2,7 @@ import React from "react";
 import ContentLoader from "react-content-loader"
 import unlike from './unlike.svg';
 import like from './like.svg';
-
 import AppContext from "../../context";
-
 import cardStyles from './Card.module.scss';
 
 
@@ -51,28 +49,27 @@ function Card({
           </ContentLoader>
         ):(
           <>
-               <div className={cardStyles.favorite} onClick={onClickFavorite}>
+          {onFaforite &&
+            <div className={cardStyles.favorite} onClick={onClickFavorite}>
                 <img width={32} height={32} src={isFavorite ? like : unlike} alt="Unlike"/>
-               </div>
+             </div>}
                 <img className="card__img" width={155} height={180} src={imageUrl} alt="Vazon"/>
                 <h5 className="mt-10 mb-10">{title}</h5>
-              <div className="d-flex justify-between align-center">
+             <div className="d-flex justify-between align-center">
                 <div className="d-flex flex-column">
                   <span>Цена:</span>
                   <b>{price} грн.</b>
                 </div>
-                <img className={cardStyles.plus}
-                     onClick={onClickPlus}
-                     src={isItemAdded(id) ? "/img/btn_cheked.svg" : "/img/btn-plus.svg"}
-                     alt="Plus"/>
-               </div>
+                {onPlus && <img
+                  className={cardStyles.plus}
+                  onClick={onClickPlus}
+                  src={isItemAdded(id) ? "/img/btn_cheked.svg" : "/img/btn-plus.svg"}
+                  alt="Plus"/>
+                }
+             </div>
           </>
           )}
-
-
     </div>
-
-
   )
 }
 
