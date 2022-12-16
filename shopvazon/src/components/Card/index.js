@@ -1,9 +1,12 @@
 import React from "react";
 import ContentLoader from "react-content-loader"
+
+import cardStyles from './Card.module.scss';
+
+import AppContext from "../../context";
+
 import unlike from './unlike.svg';
 import like from './like.svg';
-import AppContext from "../../context";
-import cardStyles from './Card.module.scss';
 
 
 function Card({

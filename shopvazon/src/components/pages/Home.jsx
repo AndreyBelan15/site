@@ -49,7 +49,7 @@ function Home({
 
       {/*===== Див с карточками товара =====*/}
 
-      <div className="d-flex justify-between flex-wrap">    {/*flex-wrap */}
+      <div className="d-flex justify-between flex-wrap">
         {renderItems()}
       </div>
     </div>

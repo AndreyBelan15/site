@@ -36,16 +36,7 @@ export default Favorites;
 
 
 
-// (<Card
-//     key={index}
-//     id={item.id}
-//     title={item.title}
-//     price={item.price}
-//     imageUrl={item.imageUrl}
-//     favorited={true}
-//     onFaforite={onAddToFavorite}
-//   />
-// )
+
 
 
 

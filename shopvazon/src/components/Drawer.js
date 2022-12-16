@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import env from "react-dotenv"
 
 import Info from "./Info";
 import {useCart} from "../hooks/useCart";
@@ -18,7 +19,7 @@ function Drawer ({ onClose, onRemove, items = [] }) {
   const onClickOrder = async () => {
    try {
      setIsLoading(true)
-     const {data} = await axios.post('https://6304e002697408f7edbd253a.mockapi.io/orders', {items, cartItems})
+     const {data} = await axios.post(env.MOCAPI_URL+'/orders', {items, cartItems})
      setOrderId(data.id)
      setIsOrderComplete(true)
      setCartItems([])
