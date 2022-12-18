@@ -3,7 +3,7 @@ import Card from "../Card";
 import AppContext from "../../context";
 
 
-//TODO: Сделать проверку повторяющихся товаров
+// Сделать проверку повторяющихся товаров
 
 
 function Favorites() {

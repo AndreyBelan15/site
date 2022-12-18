@@ -27,9 +27,6 @@ function Home({
           />
         ))
   }
-
-
-
   return(
     <div className="content p-40">
       <div className="d-flex align-center justify-between mb-40">

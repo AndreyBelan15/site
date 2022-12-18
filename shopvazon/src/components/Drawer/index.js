@@ -2,17 +2,19 @@ import React from "react";
 import axios from "axios";
 import env from "react-dotenv"
 
-import Info from "./Info";
-import {useCart} from "../hooks/useCart";
+import Info from "../Info";
+import {useCart} from "../../hooks/useCart";
+
+import styles from './Drawer.module.scss'
 
 
 // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Drawer ({ onClose, onRemove, items = [] }) {
-  const {cartItems, setCartItems, totalPrice} = useCart();     // Drawer суммирует все цены товаров (totalPrice)
-  const [orderId, setOrderId] = React.useState(null)
-  const [isOrderComplete, setIsOrderComplete] = React.useState(false)
-  const [isLoading, setIsLoading] = React.useState(false)
+function Index ({ onClose, onRemove, items = [], opened }) {
+  const {cartItems, setCartItems, totalPrice} = useCart();     // Index суммирует все цены товаров (totalPrice)
+  const [orderId, setOrderId] = React.useState(null)    // Номер заказа при оформлении
+  const [isOrderComplete, setIsOrderComplete] = React.useState(false) // Оформление заказа, или пустая корзина
+  const [isLoading, setIsLoading] = React.useState(false)  // Загрузка карточек товара
 
 
 
@@ -32,8 +34,8 @@ function Drawer ({ onClose, onRemove, items = [] }) {
 
   return(
 
-    <div className="overlay">
-      <div className="drawer">
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+      <div className={styles.drawer}>
         <h2 className="d-flex justify-between">
           Корзина
           <img onClick={onClose} className="removeBtn" src="/img/btn-remove.svg" alt="Close"/>
@@ -41,8 +43,8 @@ function Drawer ({ onClose, onRemove, items = [] }) {
 
         { items.length > 0 ?  (
 
-            // ===== Див с карточками выбора в корзине =====
-
+            // ===== Див с карточками в корзине =====
+          <div className="d-flex flex-column flex">
             <div className="items flex">
               {items.map((obj) =>(
                 <div key={obj.id} className="cartItem d-flex align-center mt-20 mb-20 p-10">
@@ -72,7 +74,7 @@ function Drawer ({ onClose, onRemove, items = [] }) {
                   <li>
                     <span>Скидка 5%:</span>                         {/*Определяю общую сумму скидки на товар*/}
                     <div></div>
-                    <b>{totalPrice / 100 * 5} грн.</b>              {/*Вычисляю сумму скидки8*/}
+                    <b>{totalPrice / 100 * 5} грн.</b>              {/*Вычисляю сумму скидки*/}
                   </li>
                 </ul>
                 <button disabled={isLoading} onClick={onClickOrder} className="greenButton">Оформить заказ
@@ -80,7 +82,7 @@ function Drawer ({ onClose, onRemove, items = [] }) {
                 </button>
               </div>
             </div>
-
+          </div>
           ):(
             <Info
               title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
@@ -95,5 +97,5 @@ function Drawer ({ onClose, onRemove, items = [] }) {
   )
 }
 
-export default Drawer;
+export default Index;
 
