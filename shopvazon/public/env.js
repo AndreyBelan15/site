@@ -14,7 +14,7 @@ window.env = {
   "HOME": "C:\\Users\\DELL",
   "HOMEDRIVE": "C:",
   "HOMEPATH": "\\Users\\DELL",
-  "IDEA_INITIAL_DIRECTORY": "C:\\Users\\DELL\\Desktop",
+  "IDEA_INITIAL_DIRECTORY": "C:\\Program Files\\JetBrains\\WebStorm 2021.3.2\\bin",
   "INIT_CWD": "D:\\Step\\back\\site\\shopvazon",
   "LOCALAPPDATA": "C:\\Users\\DELL\\AppData\\Local",
   "LOGONSERVER": "\\\\DESKTOP-ASR488D",

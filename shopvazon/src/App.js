@@ -3,6 +3,7 @@ import axios from "axios";
 import { Route } from 'react-router-dom';
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
+// import Footer from "./components/Footer";
 import AppContext from "./context";
 import env from "react-dotenv"
 
@@ -12,7 +13,7 @@ import Home from "./components/pages/Home";
 import Favorites from "./components/pages/Favorites";
 import Orders from "./components/pages/Orders";
 
-// import Footer from "./components/Footer";
+
 
 
 
@@ -132,7 +133,6 @@ function App() {
 
       <div className="wrapper clear">
 
-
           <Drawer
             items={cartItems}
             onClose={()=>setCartOpened(false)}
@@ -140,18 +140,14 @@ function App() {
             opened={cartOpened}
           />
 
-
         <Header onClickCart={()=>setCartOpened(true)} />
 
-
         {/*   /!*Слайдер*!/*/}
-
         <div className="wrapper__slider">
           <FotoSlider/>
         </div>
 
         {/*Роуты*/}
-
         <Route path="/" exact>
           <Home
             items={items}
@@ -164,18 +160,17 @@ function App() {
             isLoading={isLoading}
           />
         </Route>
-
         <Route path="/favorites" exact>
           <Favorites/>
         </Route>
-
         <Route path="/orders" exact>
           <Orders/>
         </Route>
 
-       {/*<Footer/>*/}
+        {/*<Footer/>*/}
 
       </div>
+
     </AppContext.Provider>
 
 

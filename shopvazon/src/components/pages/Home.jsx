@@ -1,7 +1,6 @@
 import React from "react";
 import Card from '../Card';
 
-
 function Home({
   items,
   searchValue,
@@ -30,7 +29,7 @@ function Home({
   return(
     <div className="content p-40">
       <div className="d-flex align-center justify-between mb-40">
-        <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все вазоны'}</h1>
+        <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Вазоны для дома и сада'}</h1>
         <div className="search-block d-flex">
           <img src="/img/search.svg" alt="Search"/>
           {searchValue &&
@@ -50,6 +49,8 @@ function Home({
         {renderItems()}
       </div>
     </div>
+
+
   )
 }
 export default Home;
