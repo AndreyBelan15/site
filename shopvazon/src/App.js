@@ -2,15 +2,18 @@ import React from "react"
 import axios from "axios";
 import { Route } from 'react-router-dom';
 import Header from "./components/Header";
-import Index from "./components/Drawer";
+import Drawer from "./components/Drawer";
 import AppContext from "./context";
 import env from "react-dotenv"
 
-// import FotoSlider from "./components/Slider/FotoSlider";
+import FotoSlider from "./components/Slider/FotoSlider";
 
 import Home from "./components/pages/Home";
 import Favorites from "./components/pages/Favorites";
 import Orders from "./components/pages/Orders";
+
+// import Footer from "./components/Footer";
+
 
 
 
@@ -90,7 +93,7 @@ function App() {
   }
 
   const onAddToFavorite = async (obj) => {    // Добавление и проверка товаров в фаворитах, если есть то не добавлять
-    //Тут я обернул в try-catch для тог, чтоб я мог отловить ошибку при использовании async-await
+    //Тут я обернул в try-catch для того, чтоб я мог отловить ошибку при использовании async-await
     try
     {
       if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
@@ -129,22 +132,23 @@ function App() {
 
       <div className="wrapper clear">
 
-        {/*{cartOpened && (*/}
-          <Index
+
+          <Drawer
             items={cartItems}
             onClose={()=>setCartOpened(false)}
             onRemove={onRemoveItem}
             opened={cartOpened}
           />
-        {/*)}*/}
+
 
         <Header onClickCart={()=>setCartOpened(true)} />
 
+
         {/*   /!*Слайдер*!/*/}
 
-        {/*<div className="wrapper__slider">*/}
-        {/*  <FotoSlider/>*/}
-        {/*</div>*/}
+        <div className="wrapper__slider">
+          <FotoSlider/>
+        </div>
 
         {/*Роуты*/}
 
@@ -169,8 +173,11 @@ function App() {
           <Orders/>
         </Route>
 
+       {/*<Footer/>*/}
+
       </div>
     </AppContext.Provider>
+
 
   );
 }

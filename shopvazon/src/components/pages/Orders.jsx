@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '../Card';
 import axios from "axios";
 import AppContext from "../../context";
+import env from "react-dotenv";
 
 function Orders() {
   const { onAddToFavorite,onAddToCart } = React.useContext(AppContext);
@@ -11,7 +12,7 @@ function Orders() {
   React.useEffect(() => {
     (async () =>{
       try {
-      const { data } = await axios.get('https://6304e002697408f7edbd253a.mockapi.io/orders');
+      const { data } = await axios.get(env.MOCAPI_URL+'/orders');
       setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []));
       setIsLoading(false);
     } catch (error) {
@@ -28,11 +29,10 @@ function Orders() {
       </div>
 
       <div className="d-flex flex-wrap">
-        {(isLoading ? [...Array(10)] : orders).map((item, index) => (
+        {(isLoading ? [...Array(12)] : orders).map((item, index) => (
           <Card
             key={index}
             onFaforite={(obj)=>onAddToFavorite(obj)}
-            // onPlus={(obj) => onAddToCart(obj)}   пока убрал из контекста, проверю надо ли он там
             loading={isLoading}
             {...item}
           />
@@ -43,25 +43,3 @@ function Orders() {
 }
 
 export default Orders;
-// key={index} favorited={true} onFaforite={onAddToFavorite}  {...item}
-
-// const { onAddToFavorite, onAddToCart } = React.useContext(AppContext);
-// const [orders, setOrders] = React.useState([]);
-// const [isLoading, setIsLoading] = React.useState(true);
-
-// React.useEffect(() => {
-//   (async () => {
-//     try {
-//       const { data } = await axios.get('https://60d62397943aa60017768e77.mockapi.io/orders');
-//       setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []));
-//       setIsLoading(false);
-//     } catch (error) {
-//       alert('Ошибка при запросе заказов');
-//       console.error(error);
-//     }
-//   })();
-// }, []);
-
-// const { data } = await axios.get('https://6304e002697408f7edbd253a.mockapi.io/orders')
-// setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []))
-// setIsLoading(false)
